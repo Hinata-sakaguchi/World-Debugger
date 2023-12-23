@@ -83,6 +83,13 @@ static bool loadTextureFromMem(C3D_Tex* tex, C3D_TexCube* cube, const void* data
 	return true;
 }
 
+void loadAndSetTexture(C3D_Tex* tex, const void* data, u32 size) {
+		if (!loadTextureFromMem(tex, NULL, data, size))
+			svcBreak(USERBREAK_PANIC);
+		C3D_TexSetFilter(tex, GPU_LINEAR, GPU_NEAREST);
+		C3D_TexSetFilterMipmap(tex, GPU_LINEAR);
+	}
+
 static void sceneInit( void )
 {
 	vshader_dvlb = DVLB_ParseFile((u32 *)vshader_shbin, vshader_shbin_size);
@@ -138,12 +145,6 @@ static void sceneInit( void )
 		u32 size;
 	} TextureData;
 
-	void loadAndSetTexture(C3D_Tex* tex, const void* data, u32 size) {
-		if (!loadTextureFromMem(tex, NULL, data, size))
-			svcBreak(USERBREAK_PANIC);
-		C3D_TexSetFilter(tex, GPU_LINEAR, GPU_NEAREST);
-		C3D_TexSetFilterMipmap(tex, GPU_LINEAR);
-	}
 
 	TextureData textures[] = {
 		{ &road_tex, road_t3x, road_t3x_size },
@@ -157,6 +158,12 @@ static void sceneInit( void )
 	for (size_t i = 0; i < sizeof(textures) / sizeof(textures[0]); ++i) {
 		loadAndSetTexture(textures[i].tex, textures[i].data, textures[i].size);
 	}
+
+	
+	FogLut_Exp(&fog_Lut, density, 1.5f, 0.01f, 20.0f);
+	C3D_FogGasMode(GPU_FOG, GPU_DEPTH_DENSITY, false);
+	C3D_FogColor(0x7C542C);//2c547c
+	C3D_FogLutBind(&fog_Lut);
 }
 
 void prepareToRender(void)
@@ -220,13 +227,6 @@ static void sceneRender(void)
 		C3D_DrawArrays(GPU_TRIANGLES, totalVertexCount, drawData[i].count);
 		totalVertexCount += drawData[i].count;
 	}
-
-	
-	FogLut_Exp(&fog_Lut, density, 1.5f, 0.01f, 20.0f);
-	C3D_FogGasMode(GPU_FOG, GPU_DEPTH_DENSITY, false);
-	C3D_FogColor(0x7C542C);//2c547c
-	C3D_FogLutBind(&fog_Lut);
-	
 }
 
 
