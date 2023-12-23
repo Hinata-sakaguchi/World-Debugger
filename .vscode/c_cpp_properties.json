@@ -13,6 +13,8 @@
             "name": "Library",
             "includePath": [
                 "${workspaceFolder}/include/**",
+                "${workspaceFolder}/include/Vertex/**",
+                "${workspaceFolder}/include/TV/**",
                 "${ctrulib}/include/**",
                 "${ctrpflib}/include/**",
                 "${portlibs}/ogg/**",
@@ -28,6 +30,8 @@
             "browse": {
                 "path": [
                     "${workspaceFolder}/include/**",
+                    "${workspaceFolder}/include/Vertex/**",
+                    "${workspaceFolder}/include/TV/**",
                     "${ctrpflib}/include/**",
                     "${ctrulib}/include/**",
                     "${portlibs}/ogg/**",
