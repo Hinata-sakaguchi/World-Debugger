@@ -173,7 +173,6 @@ void Game::renderPrepare(void)
 
 void Game::renderTop(void)
 {
-    C2D_Prepare();
     renderPrepare();
     currentTime = time(NULL);
 
