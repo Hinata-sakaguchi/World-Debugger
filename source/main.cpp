@@ -14,14 +14,6 @@ bool flagExecuted = false;
 
 C3D_RenderTarget *top;
 C3D_RenderTarget *bottom;
-void execureOnce()
-{
-	if (!flagExecuted) {
-		C3D_RenderTargetSetOutput(top, GFX_TOP, GFX_LEFT, DISPLAY_TRANSFER_FLAGS);
-		C3D_RenderTargetSetOutput(top, GFX_TOP, GFX_RIGHT, DISPLAY_TRANSFER_FLAGS);
-		flagExecuted = true;
-	}
-}
 
 int main(void)
 {
@@ -33,7 +25,8 @@ int main(void)
     top = C3D_RenderTargetCreate(240, 400, GPU_RB_RGBA8, GPU_RB_DEPTH24_STENCIL8);
 	bottom = C3D_RenderTargetCreate(240, 320, GPU_RB_RGBA8, GPU_RB_DEPTH24_STENCIL8);
 
-    C3D_RenderTargetSetOutput(top, GFX_TOP, GFX_LEFT, DISPLAY_TRANSFER_FLAGS);
+	C3D_RenderTargetSetOutput(top, GFX_TOP, GFX_LEFT, DISPLAY_TRANSFER_FLAGS);
+	C3D_RenderTargetSetOutput(top, GFX_TOP, GFX_RIGHT, DISPLAY_TRANSFER_FLAGS);
     C3D_RenderTargetSetOutput(bottom, GFX_BOTTOM, GFX_LEFT, DISPLAY_TRANSFER_FLAGS);
 
 	Game game;
@@ -53,7 +46,6 @@ int main(void)
 		C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
 		{
 			{// Top
-				execureOnce();
 				C3D_RenderTargetClear(top, C3D_CLEAR_ALL, CLEAR_COLOR, 0);
 				C3D_FrameDrawOn(top);
 				C2D_SceneTarget(top);

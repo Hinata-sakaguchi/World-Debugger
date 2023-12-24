@@ -1,7 +1,8 @@
 #include "Game.hpp"
 #include "all_vertex.hpp"
-#include "Utils.hpp"
 #include "vshader_shbin.h"
+#include "Utils.hpp"
+
 
 #define SAFE_DELETE(x) if(x) { delete x; x = nullptr; }
 
@@ -60,11 +61,10 @@ Game::~Game(void)
 
     SAFE_DELETE(m_car);
     SAFE_DELETE(m_sea);
-
-    SAFE_DELETE(m_uniformManager);
     SAFE_DELETE(m_stop);
     SAFE_DELETE(m_titleTown);
-
+    SAFE_DELETE(m_uniformManager);
+    SAFE_DELETE(spriteSheet);
     shaderProgramFree(&m_shader);
     DVLB_Free(m_dvlb);
 }
@@ -173,27 +173,29 @@ void Game::renderPrepare(void)
 
 void Game::renderTop(void)
 {
-    renderPrepare();
     currentTime = time(NULL);
 
 	if (difftime(currentTime, programStartTime) >= 0)
 	{
+        C2D_Prepare();  
 		C2D_DrawSprite(&companySprite);
 		if (difftime(currentTime, programStartTime) >= 4)
 		{
 			C2D_DrawSprite(&collaboraterSprite);
 			if (difftime(currentTime, programStartTime) > 7)
 			{
+                renderPrepare();
+
                 m_camera->updateView();
                 m_car->render();
                 m_sea->render();
                 m_stop->render();
                 m_titleTown->render();
-				C2D_Prepare();
+                
 				C2D_DrawSprite(&logoSprite);
-				C2D_Flush();
 			}
 		}
+        C2D_Flush();
 	}
  
 

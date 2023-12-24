@@ -142,11 +142,11 @@ void Object::render(void) {
 
     // Set VBO
     C3D_BufInfo* bufInfo = C3D_GetBufInfo();
-    BufInfo_Init(bufInfo);
-    BufInfo_Add(bufInfo, m_vbo, sizeof(Vertex), 3, 0x210);
+    // BufInfo_Init(bufInfo);
+    // BufInfo_Add(bufInfo, m_vbo, sizeof(Vertex), 3, 0x210);
 
-    // Set texture
-    C3D_TexBind(0, &m_textures[m_textureIndex]);
+    // // Set texture
+    // C3D_TexBind(0, &m_textures[m_textureIndex]);
 
     // Draw
     C3D_DrawArrays(GPU_TRIANGLES, 0, m_numVertices);

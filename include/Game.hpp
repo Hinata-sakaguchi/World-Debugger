@@ -30,6 +30,7 @@ private:
 
     DVLB_s* m_dvlb;
     shaderProgram_s m_shader;
+    Object *m_room;
     Object *m_car;
     Object *m_sea;
     Object *m_stop;

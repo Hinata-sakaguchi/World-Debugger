@@ -119,8 +119,8 @@ Game.o: C:/Users/ryuai/Videos/World-Debugger/source/Game.cpp \
  C:/Users/ryuai/Videos/World-Debugger/include/Vertices/sea.hpp \
  C:/Users/ryuai/Videos/World-Debugger/include/Vertices/stop.hpp \
  C:/Users/ryuai/Videos/World-Debugger/include/Vertices/titleTown.hpp \
- C:/Users/ryuai/Videos/World-Debugger/include/Utils.hpp \
- C:/Users/ryuai/Videos/World-Debugger/build/vshader_shbin.h
+ C:/Users/ryuai/Videos/World-Debugger/build/vshader_shbin.h \
+ C:/Users/ryuai/Videos/World-Debugger/include/Utils.hpp
 C:/Users/ryuai/Videos/World-Debugger/include/Game.hpp:
 C:/devkitPro/libctru/include/citro3d.h:
 C:/devkitPro/libctru/include/c3d/types.h:
@@ -241,5 +241,5 @@ C:/Users/ryuai/Videos/World-Debugger/include/Vertices/car.hpp:
 C:/Users/ryuai/Videos/World-Debugger/include/Vertices/sea.hpp:
 C:/Users/ryuai/Videos/World-Debugger/include/Vertices/stop.hpp:
 C:/Users/ryuai/Videos/World-Debugger/include/Vertices/titleTown.hpp:
-C:/Users/ryuai/Videos/World-Debugger/include/Utils.hpp:
 C:/Users/ryuai/Videos/World-Debugger/build/vshader_shbin.h:
+C:/Users/ryuai/Videos/World-Debugger/include/Utils.hpp:
