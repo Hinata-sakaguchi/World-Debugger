@@ -1,4 +1,7 @@
-main.o: C:/Users/ryuai/Videos/World-Debugger/source/main.c \
+main.o: C:/Users/ryuai/Videos/World-Debugger/source/main.cpp \
+ C:/Users/ryuai/Videos/World-Debugger/include/Game.hpp \
+ C:/devkitPro/libctru/include/citro3d.h \
+ C:/devkitPro/libctru/include/c3d/types.h \
  C:/devkitPro/libctru/include/3ds.h \
  C:/devkitPro/libctru/include/3ds/types.h \
  C:/devkitPro/libctru/include/3ds/result.h \
@@ -83,9 +86,6 @@ main.o: C:/Users/ryuai/Videos/World-Debugger/source/main.c \
  C:/devkitPro/libctru/include/3ds/font.h \
  C:/devkitPro/libctru/include/3ds/gdbhio_dev.h \
  C:/devkitPro/libctru/include/3ds/3dslink.h \
- C:/devkitPro/libctru/include/citro2d.h \
- C:/devkitPro/libctru/include/citro3d.h \
- C:/devkitPro/libctru/include/c3d/types.h \
  C:/devkitPro/libctru/include/c3d/maths.h \
  C:/devkitPro/libctru/include/c3d/mtxstack.h \
  C:/devkitPro/libctru/include/c3d/uniforms.h \
@@ -101,44 +101,22 @@ main.o: C:/Users/ryuai/Videos/World-Debugger/source/main.c \
  C:/devkitPro/libctru/include/c3d/fog.h \
  C:/devkitPro/libctru/include/c3d/framebuffer.h \
  C:/devkitPro/libctru/include/c3d/renderqueue.h \
+ C:/devkitPro/libctru/include/citro2d.h \
  C:/devkitPro/libctru/include/tex3ds.h \
  C:/devkitPro/libctru/include/c2d/base.h \
  C:/devkitPro/libctru/include/c2d/spritesheet.h \
  C:/devkitPro/libctru/include/c2d/sprite.h \
  C:/devkitPro/libctru/include/c2d/text.h \
  C:/devkitPro/libctru/include/c2d/font.h \
- C:/devkitPro/libcwav/include/cwav.h \
- C:/devkitPro/libncsnd/include/ncsnd.h \
- C:/devkitPro/portlibs/3ds/include/opus/opusfile.h \
- C:/devkitPro/portlibs/3ds/include/ogg/ogg.h \
- C:/devkitPro/portlibs/3ds/include/ogg/os_types.h \
- C:/devkitPro/portlibs/3ds/include/ogg/config_types.h \
- C:/devkitPro/portlibs/3ds/include/opus/opus_multistream.h \
- C:/devkitPro/portlibs/3ds/include/opus/opus.h \
- C:/devkitPro/portlibs/3ds/include/opus/opus_types.h \
- C:/devkitPro/portlibs/3ds/include/opus/opus_defines.h \
- C:/Users/ryuai/Videos/World-Debugger/source/sprite_animation_manager.h \
- C:/Users/ryuai/Videos/World-Debugger/source/ds_time.h \
- C:/Users/ryuai/Videos/World-Debugger/build/vshader_shbin.h \
- C:/Users/ryuai/Videos/World-Debugger/build/road_t3x.h \
- C:/Users/ryuai/Videos/World-Debugger/build/stop_t3x.h \
- C:/Users/ryuai/Videos/World-Debugger/build/people_t3x.h \
- C:/Users/ryuai/Videos/World-Debugger/build/tunnel_t3x.h \
- C:/Users/ryuai/Videos/World-Debugger/build/tvBase_t3x.h \
- C:/Users/ryuai/Videos/World-Debugger/build/tvDisplay_t3x.h \
- C:/Users/ryuai/Videos/World-Debugger/build/tvStand_t3x.h \
- C:/Users/ryuai/Videos/World-Debugger/include/all_vertex.h \
- C:/Users/ryuai/Videos/World-Debugger/include/Vertex/base_vertex.h \
- C:/Users/ryuai/Videos/World-Debugger/include/Vertex/people_vertex.h \
- C:/Users/ryuai/Videos/World-Debugger/include/Vertex/base_vertex.h \
- C:/Users/ryuai/Videos/World-Debugger/include/Vertex/road_vertex.h \
- C:/Users/ryuai/Videos/World-Debugger/include/Vertex/stop_vertex.h \
- C:/Users/ryuai/Videos/World-Debugger/include/Vertex/tunnel_vertex.h \
- C:/Users/ryuai/Videos/World-Debugger/include/tv.h \
- C:/Users/ryuai/Videos/World-Debugger/include/TV/tvBase_vertex.h \
- C:/Users/ryuai/Videos/World-Debugger/include/Vertex/base_vertex.h \
- C:/Users/ryuai/Videos/World-Debugger/include/TV/tvDisplay_vertex.h \
- C:/Users/ryuai/Videos/World-Debugger/include/TV/tvStand_vertex.h
+ C:/Users/ryuai/Videos/World-Debugger/include/Camera.hpp \
+ C:/Users/ryuai/Videos/World-Debugger/include/common.h \
+ C:/Users/ryuai/Videos/World-Debugger/include/Uniforms.hpp \
+ C:/Users/ryuai/Videos/World-Debugger/include/Object.hpp \
+ C:/Users/ryuai/Videos/World-Debugger/include/Light.hpp \
+ C:/Users/ryuai/Videos/World-Debugger/include/Sprite.hpp
+C:/Users/ryuai/Videos/World-Debugger/include/Game.hpp:
+C:/devkitPro/libctru/include/citro3d.h:
+C:/devkitPro/libctru/include/c3d/types.h:
 C:/devkitPro/libctru/include/3ds.h:
 C:/devkitPro/libctru/include/3ds/types.h:
 C:/devkitPro/libctru/include/3ds/result.h:
@@ -223,9 +201,6 @@ C:/devkitPro/libctru/include/3ds/romfs.h:
 C:/devkitPro/libctru/include/3ds/font.h:
 C:/devkitPro/libctru/include/3ds/gdbhio_dev.h:
 C:/devkitPro/libctru/include/3ds/3dslink.h:
-C:/devkitPro/libctru/include/citro2d.h:
-C:/devkitPro/libctru/include/citro3d.h:
-C:/devkitPro/libctru/include/c3d/types.h:
 C:/devkitPro/libctru/include/c3d/maths.h:
 C:/devkitPro/libctru/include/c3d/mtxstack.h:
 C:/devkitPro/libctru/include/c3d/uniforms.h:
@@ -241,41 +216,16 @@ C:/devkitPro/libctru/include/c3d/lightlut.h:
 C:/devkitPro/libctru/include/c3d/fog.h:
 C:/devkitPro/libctru/include/c3d/framebuffer.h:
 C:/devkitPro/libctru/include/c3d/renderqueue.h:
+C:/devkitPro/libctru/include/citro2d.h:
 C:/devkitPro/libctru/include/tex3ds.h:
 C:/devkitPro/libctru/include/c2d/base.h:
 C:/devkitPro/libctru/include/c2d/spritesheet.h:
 C:/devkitPro/libctru/include/c2d/sprite.h:
 C:/devkitPro/libctru/include/c2d/text.h:
 C:/devkitPro/libctru/include/c2d/font.h:
-C:/devkitPro/libcwav/include/cwav.h:
-C:/devkitPro/libncsnd/include/ncsnd.h:
-C:/devkitPro/portlibs/3ds/include/opus/opusfile.h:
-C:/devkitPro/portlibs/3ds/include/ogg/ogg.h:
-C:/devkitPro/portlibs/3ds/include/ogg/os_types.h:
-C:/devkitPro/portlibs/3ds/include/ogg/config_types.h:
-C:/devkitPro/portlibs/3ds/include/opus/opus_multistream.h:
-C:/devkitPro/portlibs/3ds/include/opus/opus.h:
-C:/devkitPro/portlibs/3ds/include/opus/opus_types.h:
-C:/devkitPro/portlibs/3ds/include/opus/opus_defines.h:
-C:/Users/ryuai/Videos/World-Debugger/source/sprite_animation_manager.h:
-C:/Users/ryuai/Videos/World-Debugger/source/ds_time.h:
-C:/Users/ryuai/Videos/World-Debugger/build/vshader_shbin.h:
-C:/Users/ryuai/Videos/World-Debugger/build/road_t3x.h:
-C:/Users/ryuai/Videos/World-Debugger/build/stop_t3x.h:
-C:/Users/ryuai/Videos/World-Debugger/build/people_t3x.h:
-C:/Users/ryuai/Videos/World-Debugger/build/tunnel_t3x.h:
-C:/Users/ryuai/Videos/World-Debugger/build/tvBase_t3x.h:
-C:/Users/ryuai/Videos/World-Debugger/build/tvDisplay_t3x.h:
-C:/Users/ryuai/Videos/World-Debugger/build/tvStand_t3x.h:
-C:/Users/ryuai/Videos/World-Debugger/include/all_vertex.h:
-C:/Users/ryuai/Videos/World-Debugger/include/Vertex/base_vertex.h:
-C:/Users/ryuai/Videos/World-Debugger/include/Vertex/people_vertex.h:
-C:/Users/ryuai/Videos/World-Debugger/include/Vertex/base_vertex.h:
-C:/Users/ryuai/Videos/World-Debugger/include/Vertex/road_vertex.h:
-C:/Users/ryuai/Videos/World-Debugger/include/Vertex/stop_vertex.h:
-C:/Users/ryuai/Videos/World-Debugger/include/Vertex/tunnel_vertex.h:
-C:/Users/ryuai/Videos/World-Debugger/include/tv.h:
-C:/Users/ryuai/Videos/World-Debugger/include/TV/tvBase_vertex.h:
-C:/Users/ryuai/Videos/World-Debugger/include/Vertex/base_vertex.h:
-C:/Users/ryuai/Videos/World-Debugger/include/TV/tvDisplay_vertex.h:
-C:/Users/ryuai/Videos/World-Debugger/include/TV/tvStand_vertex.h:
+C:/Users/ryuai/Videos/World-Debugger/include/Camera.hpp:
+C:/Users/ryuai/Videos/World-Debugger/include/common.h:
+C:/Users/ryuai/Videos/World-Debugger/include/Uniforms.hpp:
+C:/Users/ryuai/Videos/World-Debugger/include/Object.hpp:
+C:/Users/ryuai/Videos/World-Debugger/include/Light.hpp:
+C:/Users/ryuai/Videos/World-Debugger/include/Sprite.hpp:

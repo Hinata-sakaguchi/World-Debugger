@@ -82,7 +82,9 @@
         "ogg.h": "c",
         "time.h": "c",
         "chrono": "c",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "*.pica": "cpp",
+        "cinttypes": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

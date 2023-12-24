@@ -13,7 +13,7 @@
             "name": "Library",
             "includePath": [
                 "${workspaceFolder}/include/**",
-                "${workspaceFolder}/include/Vertex/**",
+                "${workspaceFolder}/include/Vertices/**",
                 "${workspaceFolder}/include/TV/**",
                 "${ctrulib}/include/**",
                 "${ctrpflib}/include/**",
@@ -30,7 +30,7 @@
             "browse": {
                 "path": [
                     "${workspaceFolder}/include/**",
-                    "${workspaceFolder}/include/Vertex/**",
+                    "${workspaceFolder}/include/Vertices/**",
                     "${workspaceFolder}/include/TV/**",
                     "${ctrpflib}/include/**",
                     "${ctrulib}/include/**",
@@ -42,8 +42,8 @@
                 "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": ""
             },
-            "cStandard": "c11",
-            "cppStandard": "c++11",
+            "cStandard": "c23",
+            "cppStandard": "c++23",
             "compilerPath": "${devkitarm}/bin/arm-none-eabi-g++",
             "intelliSenseMode": "gcc-arm"
         }
