@@ -50,4 +50,6 @@ private:
 
     static void moveCallback(Position &pos);
     void renderPrepare(void);
+    void Draw2D(void);
+    void Draw3D(void);
 };

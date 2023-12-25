@@ -1,4 +1,4 @@
-with open("C:/Users/ryuai/OneDrive/ドキュメント/blender/obj/sea.obj", "r", encoding="utf-8") as f:
+with open("C:/Users/ryuai/OneDrive/ドキュメント/blender/obj/town.obj", "r", encoding="utf-8") as f:
     data = f.read()
 
 v = []
@@ -21,10 +21,10 @@ import re
 pattern = re.compile(r'\d+/\d+/\d+', re.DOTALL)
 matches = pattern.findall(data)
 
-with open("result.txt", "w") as f:
+with open("Blender/Converter/result.txt", "w") as f:
     f.write("")
 
-with open("result.txt", "a") as f:
+with open("Blender/Converter/result.txt", "a") as f:
     for match in matches:
         indices = re.findall(r'\d+/\d+/\d+', match)
         for index in indices:

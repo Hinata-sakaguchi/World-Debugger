@@ -27,32 +27,32 @@ Game::Game(void)
     m_sea = new Object("romfs:/gfx/sea.t3x", Vertices::seaVertices, Vertices::seaVertexCount);
     m_stop = new Object("romfs:/gfx/stop.t3x", Vertices::stopVertices, Vertices::stopVertexCount);
     m_titleTown = new Object("romfs:/gfx/titleTown.t3x", Vertices::titleTownVertices, Vertices::titleTownVertexCount);
-    spriteSheet = new SpriteObj("romfs:/gfx/title.t3x");
+    //spriteSheet = new SpriteObj("romfs:/gfx/title.t3x");
 
     m_lightManager = new LightManager();
 
     m_camera = new Camera(this, 0, 2.0f, 0);
-    m_camera->setMoveCallback(moveCallback);
+    //m_camera->setMoveCallback(moveCallback);
 
     m_textBuf = C2D_TextBufNew(4096);
 
     // Defalut lights
-    for(u32 i = 2; i <= 8; i++)
-    {
-        m_lightManager->enable(i);
-    }
+    // for(u32 i = 2; i <= 8; i++)
+    // {
+    //     m_lightManager->enable(i);
+    // }
 
-    //m_ceilGuide->setRotateY(C3D_AngleFromDegrees(180.0f));
-
-    spriteSheet->setSprite(&collaboraterSprite, 1, 400 / 2, 240 / 2);
-    spriteSheet->setSprite(&companySprite, 0, 400 / 2, 240 / 2);
-    spriteSheet->setSprite(&logoSprite, 2, 400 / 2, 240 / 2);
+    // spriteSheet->setSprite(&collaboraterSprite, 1, 400 / 2, 240 / 2);
+    // spriteSheet->setSprite(&companySprite, 0, 400 / 2, 240 / 2);
+    // spriteSheet->setSprite(&logoSprite, 2, 400 / 2, 240 / 2);
 
 
-    FogLut_Exp(&fog_Lut, 0.05f, 1.5f, 0.01f, 20.0f);
-	C3D_FogGasMode(GPU_FOG, GPU_DEPTH_DENSITY, false);
-	C3D_FogColor(0xD8B068);
-	C3D_FogLutBind(&fog_Lut);
+    // FogLut_Exp(&fog_Lut, 0.05f, 1.5f, 0.01f, 20.0f);
+	// C3D_FogGasMode(GPU_FOG, GPU_DEPTH_DENSITY, false);
+	// C3D_FogColor(0xD8B068);
+	// C3D_FogLutBind(&fog_Lut);
+
+    // m_titleTown->setRotateY(C3D_AngleFromDegrees(180.0f));
 }
 
 Game::~Game(void)
@@ -64,6 +64,7 @@ Game::~Game(void)
     SAFE_DELETE(m_stop);
     SAFE_DELETE(m_titleTown);
     SAFE_DELETE(m_uniformManager);
+    SAFE_DELETE(m_camera);
     SAFE_DELETE(spriteSheet);
     shaderProgramFree(&m_shader);
     DVLB_Free(m_dvlb);
@@ -165,39 +166,45 @@ void Game::renderPrepare(void)
     }
 
     // Setup Light
-    m_lightManager->bind();
+    //m_lightManager->bind();
 
     C3D_CullFace(GPU_CULL_BACK_CCW);
     //C3D_CullFace(GPU_CULL_NONE);
 }
+void Game::Draw3D(void)
+{
+    m_camera->updateView();
+    m_car->render();
+    // m_sea->render();
+    // m_stop->render();
+    // m_titleTown->render(); //テストとしてここは表示させない
+}
 
-void Game::renderTop(void)
+void Game::Draw2D(void)
 {
     currentTime = time(NULL);
-
 	if (difftime(currentTime, programStartTime) >= 0)
 	{
-        C2D_Prepare();  
 		C2D_DrawSprite(&companySprite);
 		if (difftime(currentTime, programStartTime) >= 4)
 		{
 			C2D_DrawSprite(&collaboraterSprite);
 			if (difftime(currentTime, programStartTime) > 7)
-			{
-                renderPrepare();
-
-                m_camera->updateView();
-                m_car->render();
-                m_sea->render();
-                m_stop->render();
-                m_titleTown->render();
-                
 				C2D_DrawSprite(&logoSprite);
-			}
 		}
-        C2D_Flush();
 	}
- 
+
+}
+
+void Game::renderTop(void)
+{
+    
+    // C2D_Prepare();// 2Dも表示させない
+    // Draw2D();
+    // C2D_Flush();
+
+    renderPrepare();
+    Draw3D();
 
     // m_light->setScale(2.0f, 1.5f, 1.5f);
 

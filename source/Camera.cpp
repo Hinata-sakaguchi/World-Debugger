@@ -19,12 +19,12 @@ void Camera::moveAxisV(float speed)
 
     constexpr auto distance = 0.2f;
 
-    if(Collision::checkCollision(*m_owner->m_car, m_position, Position{newPosX - distance * Math::sign(sin(m_angleY)) * Math::sign(speed), m_position.y, m_position.z}))
+    if(Collision::checkCollision(*m_owner->m_sea, m_position, Position{newPosX - distance * Math::sign(sin(m_angleY)) * Math::sign(speed), m_position.y, m_position.z}))
     {
         m_position.x = newPosX;
     }
 
-    if(Collision::checkCollision(*m_owner->m_car, m_position, Position{m_position.x, m_position.y, newPosZ + distance * Math::sign(cos(m_angleY) * Math::sign(speed))}))
+    if(Collision::checkCollision(*m_owner->m_sea, m_position, Position{m_position.x, m_position.y, newPosZ + distance * Math::sign(cos(m_angleY) * Math::sign(speed))}))
     {
         m_position.z = newPosZ;
     }
@@ -37,12 +37,12 @@ void Camera::moveAxisH(float speed)
 
     constexpr auto distance = 0.2f;
 
-    if(Collision::checkCollision(*m_owner->m_car, m_position, Position{newPosX + distance * Math::sign(cos(m_angleY)) * Math::sign(speed), m_position.y, m_position.z}))
+    if(Collision::checkCollision(*m_owner->m_sea, m_position, Position{newPosX + distance * Math::sign(cos(m_angleY)) * Math::sign(speed), m_position.y, m_position.z}))
     {
         m_position.x = newPosX;
     }
 
-    if(Collision::checkCollision(*m_owner->m_car, m_position, Position{m_position.x, m_position.y, newPosZ + distance * Math::sign(sin(m_angleY)) * Math::sign(speed)}))
+    if(Collision::checkCollision(*m_owner->m_sea, m_position, Position{m_position.x, m_position.y, newPosZ + distance * Math::sign(sin(m_angleY)) * Math::sign(speed)}))
     {
         m_position.z = newPosZ;
     }
