@@ -1,4 +1,13 @@
-with open("C:/Users/ryuai/OneDrive/ドキュメント/blender/obj/town.obj", "r", encoding="utf-8") as f:
+def round_normal(value):
+    rounded = round(float(value))
+    if rounded > 0:
+        return 1
+    elif rounded < 0:
+        return -1
+    else:
+        return 0
+
+with open("C:/Users/ryuai/OneDrive/ドキュメント/blender/obj/sea.obj", "r", encoding="utf-8") as f:
     data = f.read()
 
 v = []
@@ -12,7 +21,7 @@ for i in data.split("\n"):
     elif i.startswith("vt "):
         vt.append(i.split()[1:])  # テクスチャ座標をそのまま追加
     elif i.startswith("vn "):
-        vn.append(i.split()[1:])  # 法線ベクトルをそのまま追加
+        vn.append([str(round_normal(j)) for j in i.split()[1:]])  # 法線ベクトルを四捨五入して1か0か-1に変換
     elif i.startswith("f "):
         f.append(i.split()[1:])  # 面情報をそのまま追加
 

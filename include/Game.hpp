@@ -33,8 +33,10 @@ private:
     Object *m_room;
     Object *m_car;
     Object *m_sea;
+    Object *m_ground;
     Object *m_stop;
     Object *m_titleTown;
+    Object *m_light;
     UniformManager *m_uniformManager;
     LightManager *m_lightManager;
     Camera *m_camera;
@@ -50,6 +52,4 @@ private:
 
     static void moveCallback(Position &pos);
     void renderPrepare(void);
-    void Draw2D(void);
-    void Draw3D(void);
 };

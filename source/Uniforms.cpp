@@ -7,6 +7,10 @@ UniformManager::UniformManager(shaderInstance_s *shader): m_shader(shader)
     addUniform(Id::Projection, "projection");
     addUniform(Id::View, "view");
     addUniform(Id::World, "world");
+    addUniform(Id::LVec, "lightVec");
+    addUniform(Id::LHalf, "lightHalfVec");
+    addUniform(Id::LClr, "lightClr");
+    addUniform(Id::Material, "material");
 }
 
 UniformManager::~UniformManager() {}
