@@ -10,6 +10,10 @@ public:
         World = 0,
         View,
         Projection,
+        // LVec,
+        // LHalf,
+        // LClr,
+        // Material
     };
 
     UniformManager(shaderInstance_s *shader);

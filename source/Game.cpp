@@ -35,6 +35,7 @@ Game::Game(void)
     m_camera = new Camera(this, 0, 2.0f, 0);
     // m_camera->setMoveCallback(moveCallback);
 
+
     m_textBuf = C2D_TextBufNew(4096);
 
     //Defalut lights
@@ -47,11 +48,22 @@ Game::Game(void)
     spriteSheet->setSprite(&companySprite, 0, 400 / 2, 240 / 2);
     spriteSheet->setSprite(&logoSprite, 2, 400 / 2, 240 / 2);
 
+    //   C3D_Mtx m_material =
+    //     {
+    //         {
+    //             { { 0.0f, 0.2f, 0.2f, 0.2f } }, // Ambient
+    //             { { 0.0f, 0.4f, 0.4f, 0.4f } }, // Diffuse
+    //             { { 0.0f, 0.8f, 0.8f, 0.8f } }, // Specular
+    //             { { 1.0f, 0.0f, 0.0f, 0.0f } }, // Emission
+    //         }
+    //     };
 
-    FogLut_Exp(&fog_Lut, 0.05f, 1.5f, 0.01f, 20.0f);
+    //UniformManager::getInstance().setMatrix4x4(UniformManager::Id::Material, m_material);
+    FogLut_Exp(&fog_Lut, 0.018f, 2.5f, 0.01f, 60.0f);
 	C3D_FogGasMode(GPU_FOG, GPU_PLAIN_DENSITY, false);
 	C3D_FogColor(0x7C542C);
 	C3D_FogLutBind(&fog_Lut);
+
 
     //m_titleTown->setRotateY(C3D_AngleFromDegrees(180.0f));
 }
@@ -178,38 +190,38 @@ void Game::renderPrepare(void)
 void Game::renderTop(void)
 {
     currentTime = time(NULL);
-	if (difftime(currentTime, programStartTime) >= 0)
-	{
-        // C2D_Prepare();
-		// C2D_DrawSprite(&companySprite);
-		if (difftime(currentTime, programStartTime) >= 4)
-		{
-			// C2D_DrawSprite(&collaboraterSprite);
-			if (difftime(currentTime, programStartTime) > 7)
-            {
+	// if (difftime(currentTime, programStartTime) >= 0)
+	// {
+    //     // C2D_Prepare();
+	// 	// C2D_DrawSprite(&companySprite);
+	// 	if (difftime(currentTime, programStartTime) >= 4)
+	// 	{
+	// 		// C2D_DrawSprite(&collaboraterSprite);
+	// 		if (difftime(currentTime, programStartTime) > 7)
+    //         {
 				//C2D_DrawSprite(&logoSprite);
                 
                 renderPrepare();        
                 m_camera->updateView();
-                // m_car->render();
                 m_sea->render();
                 m_ground->render();
-                // m_stop->render();
-                //m_titleTown->render(); //テストとしてここは表示させない
-            }    
-		}
-        C2D_Flush();
-	}
+                m_titleTown->setPosition(-10.4f, -3.5f, -5.0f);
+                m_titleTown->render();
+                
+                // m_light->setScale(2.0f, 1.5f, 1.5f);
+                // for(u32 i = 0; i < m_lightManager->getLightDefCount(); i++) {
+                //     const auto &lightDef = m_lightManager->getLightDef(i);
+                //     Position pos = lightDef.pos;
+                //     m_light->setPosition(pos.x, pos.y - 1.4f, pos.z);
+                //     m_light->setRotateY(C3D_AngleFromDegrees(lightDef.dir));
+                //     m_light->render();
+                // }
+    //      }    
+	// 	}
+    //     C2D_Flush();
+	// }
 
-    m_light->setScale(2.0f, 1.5f, 1.5f);
 
-    for(u32 i = 0; i < m_lightManager->getLightDefCount(); i++) {
-        const auto &lightDef = m_lightManager->getLightDef(i);
-        Position pos = lightDef.pos;
-        m_light->setPosition(pos.x, pos.y - 1.4f, pos.z);
-        m_light->setRotateY(C3D_AngleFromDegrees(lightDef.dir));
-        m_light->render();
-    }
 
     // m_numBoard->setScale(0.9);
     // m_numBoard->setRotateY(C3D_AngleFromDegrees(180.0f));
