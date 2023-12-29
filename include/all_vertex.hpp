@@ -6,5 +6,6 @@
 #include "Vertices/ground.hpp"
 #include "Vertices/stop.hpp"
 #include "Vertices/titleTown.hpp"
+#include "Vertices/lamp.hpp"
 
 #endif

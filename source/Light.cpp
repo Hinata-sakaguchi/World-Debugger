@@ -1,6 +1,6 @@
 #include "Light.hpp"
 
-constexpr float Ceil = 5.78f;
+constexpr float Ceil = 11.78f;
 
 static const C3D_Material material =
 {
@@ -48,17 +48,17 @@ LightManager::~LightManager(void)
 void LightManager::initLightDefs(void)
 {
     m_lightDefs = {
-        {{22.5f, Ceil, 40.0f}, 90, true},  // 0
+        {{-100.4f, 5.0f, 20.0f}, 90, true},  // 0
         // Corner3
-        {{15.f, Ceil, 32.50f}, 0},     // 1
+        {{-20.f, 5.0f, 20.5f}, 0},     // 1
         // Corner4
         {{7.5f, Ceil, 25.0f}, 90.f},   // 2
         // Main street
-        {{0.0f, Ceil, 20.0f}, 0},     // 3
-        {{0.0f, Ceil, 10.0f}, 0},     // 4
-        {{0.0f, Ceil, 0.0f}, 0},       // 5 
-        {{0.0f, Ceil, -10.0f}, 0},      // 6
-        {{0.0f, Ceil, -20.0f}, 0},      // 7
+        {{-20.0f, Ceil, 20.5f}, 0},     // 3
+        {{-20.0f, Ceil, 20.5f}, 0},     // 4
+        {{-20.0f, Ceil, 20.5f}, 0},       // 5 
+        {{-20.0f, 30.0f, 20.5f}, 0},      // 6
+        {{-20.0f, Ceil, -20.0f}, 0},      // 7
         // Corner5
         {{-7.5f, Ceil, -25.0f}, 90.f}, // 8
         // Corner6

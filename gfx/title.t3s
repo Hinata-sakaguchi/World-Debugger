@@ -1,4 +1,8 @@
 --atlas -f rgba8888 -z auto
-company.png
-collaboraters.png
-logo.png
+./staffrole/company.png
+./staffrole/collaboraters.png
+./gameTitle/logo.png
+./gameTitle/Chapter.png
+./gameTitle/NewGame.png
+./gameTitle/Setting.png
+./gameTitle/StaffRole.png

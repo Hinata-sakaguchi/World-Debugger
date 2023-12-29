@@ -32,7 +32,7 @@ int main(void)
 		if (kDown & KEY_START)
 			break;
 
-		game.control(kDown, kHeld, kUp);
+		//game.control(kDown, kHeld, kUp);
 		
 		C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
 		{
@@ -40,7 +40,7 @@ int main(void)
 				C3D_RenderTargetClear(top, C3D_CLEAR_ALL, CLEAR_COLOR, 0);
 				C3D_FrameDrawOn(top);
 				C2D_SceneTarget(top);
-				game.renderTop();
+				game.renderTop(kDown, kHeld, kUp);
 			}
 			{// Bottom
 				C3D_RenderTargetClear(bottom, C3D_CLEAR_ALL, CLEAR_COLOR, 0);

@@ -10,7 +10,6 @@ Game *Game::m_instance = nullptr;
 
 Game::Game(void)
 {
-    programStartTime = time(NULL);
     if(m_instance != nullptr)
         svcBreak(USERBREAK_PANIC);
 
@@ -28,61 +27,64 @@ Game::Game(void)
     m_ground = new Object("romfs:/gfx/ground.t3x", Vertices::groundVertices, Vertices::groundVertexCount);
     m_stop = new Object("romfs:/gfx/stop.t3x", Vertices::stopVertices, Vertices::stopVertexCount);
     m_titleTown = new Object("romfs:/gfx/titleTown.t3x", Vertices::titleTownVertices, Vertices::titleTownVertexCount);
+    m_lamp = new Object("romfs:/gfx/lamp.t3x", Vertices::lampVertices, Vertices::lampVertexCount);
     spriteSheet = new SpriteObj("romfs:/gfx/title.t3x");
 
     m_lightManager = new LightManager();
 
     m_camera = new Camera(this, 0, 2.0f, 0);
-    // m_camera->setMoveCallback(moveCallback);
+    m_camera->setMoveCallback(moveCallback);
 
 
     m_textBuf = C2D_TextBufNew(4096);
+
+    NewGameIsSelect = true;
+    ChapterIsSelect = false;
+    SettingIsSelect = false;
+    StaffRoleIsSelect = false;
+
+
+    selectedOption = MENU_NEW_GAME;
 
     //Defalut lights
     for(u32 i = 2; i <= 8; i++)
     {
         m_lightManager->enable(i);
     }
-
-    spriteSheet->setSprite(&collaboraterSprite, 1, 400 / 2, 240 / 2);
     spriteSheet->setSprite(&companySprite, 0, 400 / 2, 240 / 2);
+    spriteSheet->setSprite(&collaboraterSprite, 1, 400 / 2, 240 / 2);
     spriteSheet->setSprite(&logoSprite, 2, 400 / 2, 240 / 2);
+    spriteSheet->setSprite(&ChapterSprite, 3, 400 / 2, 240 / 2);
+    spriteSheet->setSprite(&NewGameSprite, 4, 400 / 2, 240 / 2);
+    spriteSheet->setSprite(&SettingSprite, 5, 400 / 2, 240 / 2);
+    spriteSheet->setSprite(&StaffRoleSprite, 6, 400 / 2, 240 / 2);
 
-    //   C3D_Mtx m_material =
-    //     {
-    //         {
-    //             { { 0.0f, 0.2f, 0.2f, 0.2f } }, // Ambient
-    //             { { 0.0f, 0.4f, 0.4f, 0.4f } }, // Diffuse
-    //             { { 0.0f, 0.8f, 0.8f, 0.8f } }, // Specular
-    //             { { 1.0f, 0.0f, 0.0f, 0.0f } }, // Emission
-    //         }
-    //     };
-
-    //UniformManager::getInstance().setMatrix4x4(UniformManager::Id::Material, m_material);
-    FogLut_Exp(&fog_Lut, 0.018f, 2.5f, 0.01f, 60.0f);
+    FogLut_Exp(&fog_Lut, 0.01f, 2.5f, 0.01f, 60.0f);
 	C3D_FogGasMode(GPU_FOG, GPU_PLAIN_DENSITY, false);
 	C3D_FogColor(0x7C542C);
 	C3D_FogLutBind(&fog_Lut);
-
-
-    //m_titleTown->setRotateY(C3D_AngleFromDegrees(180.0f));
 }
 
 Game::~Game(void)
 {
-    C2D_TextBufDelete(m_textBuf);
 
+}
+
+void Game::DeleteStage(void)
+{
+    C2D_TextBufDelete(m_textBuf);
     SAFE_DELETE(m_car);
     SAFE_DELETE(m_sea);
     SAFE_DELETE(m_ground);
-    SAFE_DELETE(m_light);
+    SAFE_DELETE(m_lightManager);
     SAFE_DELETE(m_stop);
     SAFE_DELETE(m_titleTown);
-    SAFE_DELETE(m_uniformManager);
     SAFE_DELETE(m_camera);
+    SAFE_DELETE(m_lamp);
     SAFE_DELETE(spriteSheet);
-    shaderProgramFree(&m_shader);
-    DVLB_Free(m_dvlb);
+    //SAFE_DELETE(m_uniformManager);
+    // shaderProgramFree(&m_shader);
+    // DVLB_Free(m_dvlb);
 }
 
 void Game::moveCallback(Position &pos)
@@ -91,71 +93,69 @@ void Game::moveCallback(Position &pos)
         No.3 ~ 7は常に点灯
     */
     LightManager &lm = *(getInstance().m_lightManager);
-    // Loop
-    if(pos.z < -32.5)
-    {
-        lm.disable(8);
-        lm.disable(9);
-        lm.disable(10);
 
-        lm.enable(0);
-        lm.enable(1);
-        lm.enable(2);
-
-        pos.x += 30;
-        pos.z = 32.5;
-    }
-    else if(pos.z > 32.5)
-    {
-        lm.disable(0);
-        lm.disable(1);
-        lm.disable(2);
-
-        lm.enable(8);
-        lm.enable(9);
-        lm.enable(10);
-    
-        pos.x -= 30;
-        pos.z = -32.5;
-    }
-
-    /* Corner2のライト */
-    if(pos.z < 0)
-    {
-        lm.disable(1);
-        lm.enable(9);
-    }
-    if(pos.z > 0)
-    {
-        lm.disable(9);
-        lm.enable(1);
-    }
-
-    if(pos.z < -22.5f)
-    {
-        lm.disable(2);
-        lm.enable(10);
-    }
-    if(pos.z > -22.5f)
-    {
-        lm.disable(10);
-        lm.enable(2);
-    }
-    if(pos.z > 22.5f)
-    {
-        lm.disable(8);
-        lm.enable(0);
-    }
-    if(pos.z < 22.5f)
-    {
-        lm.disable(0);
-        lm.enable(8);
-    }
+    // //lm.disable(3);
+    // lm.disable(4);
+    //lm.disable(5);
+    lm.disable(6);
+    lm.disable(7);
+    lm.disable(1);
+    lm.disable(2);
+    lm.disable(8);
+    lm.disable(9);
+    lm.disable(10);
 }
 
 void Game::control(u32 kDown, u32 kHeld, u32 kUp)
 {
     m_camera->control(kDown, kHeld, kUp);
+}
+
+void Game::handleInput(u32 kDown, u32 kHeld, u32 kUp) 
+{
+    switch (selectedOption)
+    {
+        case MENU_NEW_GAME:
+            C2D_DrawSprite(&NewGameSprite);
+            if (kDown & KEY_DDOWN) {
+                selectedOption = MENU_CHAPTER;
+            } else if (kDown & KEY_A) {
+                nowStage = START_TOWN;
+            }
+            break;
+        case MENU_CHAPTER:
+            C2D_DrawSprite(&ChapterSprite);
+            if (kDown & KEY_DUP) {
+                selectedOption = MENU_NEW_GAME;
+            } else if (kDown & KEY_DDOWN) {
+                selectedOption = MENU_SETTING;
+            } else if (kDown & KEY_A) {
+
+            }
+            break;
+        case MENU_SETTING:
+            C2D_DrawSprite(&SettingSprite);
+            if (kDown & KEY_DUP) {
+                selectedOption = MENU_CHAPTER;
+            } else if (kDown & KEY_DDOWN) {
+                selectedOption = MENU_STAFF_ROLE;
+            } else if (kDown & KEY_A) {
+                // Settingが選択された時の処理
+            }
+            break;
+        case MENU_STAFF_ROLE:
+            C2D_DrawSprite(&StaffRoleSprite);
+            if (kDown & KEY_DUP) {
+                selectedOption = MENU_SETTING;
+            } else if (kDown & KEY_DDOWN) {
+                selectedOption = MENU_NEW_GAME;
+            } else if (kDown & KEY_A) {
+                // Staff Roleが選択された時の処理
+            }
+            break;
+        default:
+            break;
+    }
 }
 
 void Game::renderPrepare(void)
@@ -173,7 +173,7 @@ void Game::renderPrepare(void)
     // Setup TexEnv
     C3D_TexEnv* env = C3D_GetTexEnv(0);
     C3D_TexEnvInit(env);
-    C3D_TexEnvSrc(env, C3D_Both, GPU_TEXTURE0, GPU_PRIMARY_COLOR, (GPU_TEVSRC)0);
+    C3D_TexEnvSrc(env, C3D_Both, GPU_TEXTURE0, GPU_FRAGMENT_SECONDARY_COLOR, (GPU_TEVSRC)0);
     C3D_TexEnvFunc(env, C3D_Both, GPU_MODULATE);
 
     for(u32 i = 1; i < 5; i++) {
@@ -187,55 +187,24 @@ void Game::renderPrepare(void)
     //C3D_CullFace(GPU_CULL_NONE);
 }
 
-void Game::renderTop(void)
+
+
+void Game::renderTop(u32 kDown, u32 kHeld, u32 kUp)
 {
-    currentTime = time(NULL);
-	// if (difftime(currentTime, programStartTime) >= 0)
-	// {
-    //     // C2D_Prepare();
-	// 	// C2D_DrawSprite(&companySprite);
-	// 	if (difftime(currentTime, programStartTime) >= 4)
-	// 	{
-	// 		// C2D_DrawSprite(&collaboraterSprite);
-	// 		if (difftime(currentTime, programStartTime) > 7)
-    //         {
-				//C2D_DrawSprite(&logoSprite);
-                
-                renderPrepare();        
-                m_camera->updateView();
-                m_sea->render();
-                m_ground->render();
-                m_titleTown->setPosition(-10.4f, -3.5f, -5.0f);
-                m_titleTown->render();
-                
-                // m_light->setScale(2.0f, 1.5f, 1.5f);
-                // for(u32 i = 0; i < m_lightManager->getLightDefCount(); i++) {
-                //     const auto &lightDef = m_lightManager->getLightDef(i);
-                //     Position pos = lightDef.pos;
-                //     m_light->setPosition(pos.x, pos.y - 1.4f, pos.z);
-                //     m_light->setRotateY(C3D_AngleFromDegrees(lightDef.dir));
-                //     m_light->render();
-                // }
-    //      }    
-	// 	}
-    //     C2D_Flush();
-	// }
+    switch (nowStage)
+    {
+        case TITLE_MENU:
+            titleMenu(kDown, kHeld, kUp);
+            break;
 
-
-
-    // m_numBoard->setScale(0.9);
-    // m_numBoard->setRotateY(C3D_AngleFromDegrees(180.0f));
-
-    // m_numBoard->setPosition(-12.6f, 0.5f, -30.0f);
-    // m_numBoard->render();
-
-    // m_numBoard->setPosition(17.4f, 0.5f, 35.0f);
-    // m_numBoard->render();
-
-    // m_ceilGuide->setPosition(0, 4.1f, 0);
-    // m_ceilGuide->render();
-
-    
+        case START_TOWN:
+            control(kDown, kHeld, kUp);
+            startTown();
+            break;
+        
+        default:
+            break;
+    }
 }
 
 void Game::renderBottom(void)
