@@ -79,7 +79,7 @@ void Game::DeleteStage(void)
     SAFE_DELETE(m_lightManager);
     SAFE_DELETE(m_stop);
     SAFE_DELETE(m_titleTown);
-    SAFE_DELETE(m_camera);
+    // SAFE_DELETE(m_camera);
     SAFE_DELETE(m_lamp);
     SAFE_DELETE(spriteSheet);
     //SAFE_DELETE(m_uniformManager);
@@ -121,6 +121,7 @@ void Game::handleInput(u32 kDown, u32 kHeld, u32 kUp)
                 selectedOption = MENU_CHAPTER;
             } else if (kDown & KEY_A) {
                 nowStage = START_TOWN;
+                DeleteStage();
             }
             break;
         case MENU_CHAPTER:
