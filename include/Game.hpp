@@ -34,20 +34,25 @@ private:
 
     DVLB_s* m_dvlb;
     shaderProgram_s m_shader;
-    Object *m_room;
-    Object *m_car;
+
+    // titleMenu
     Object *m_sea;
     Object *m_ground;
-    Object *m_stop;
     Object *m_titleTown;
     Object *m_lamp;
     Object *m_light;
+
+    // startTown
+    Object *m_stop;
+    Object *m_car;
+
     UniformManager *m_uniformManager;
     LightManager *m_lightManager;
     Camera *m_camera;
     C2D_TextBuf m_textBuf;
     C3D_FogLut fog_Lut;
     SpriteObj *spriteSheet;
+    
     C2D_Sprite collaboraterSprite;
     C2D_Sprite companySprite;
     C2D_Sprite logoSprite;
@@ -55,6 +60,7 @@ private:
     C2D_Sprite NewGameSprite;
     C2D_Sprite SettingSprite;
     C2D_Sprite StaffRoleSprite;
+
     bool NewGameIsSelect;
     bool ChapterIsSelect;
     bool SettingIsSelect;

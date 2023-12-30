@@ -1,4 +1,5 @@
 #include "Game.hpp"
+#include "Sound.hpp"
 
 #define CLEAR_COLOR 0x2c547cFF
 
@@ -53,6 +54,7 @@ int main(void)
 	}
 	C3D_Fini();
 	C2D_Fini();
+	Sound::exitEnvironment();
 	gfxExit();
 	romfsExit();
 	return 0;

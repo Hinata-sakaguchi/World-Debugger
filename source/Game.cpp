@@ -22,13 +22,16 @@ Game::Game(void)
     m_uniformManager = new UniformManager(m_shader.vertexShader);
     m_uniformManager->registerAsInstance();
 
-    m_car = new Object("romfs:/gfx/car.t3x", Vertices::carVertices, Vertices::carVertexCount);
+    // titleMenu
     m_sea = new Object("romfs:/gfx/sea.t3x", Vertices::seaVertices, Vertices::seaVertexCount);
     m_ground = new Object("romfs:/gfx/ground.t3x", Vertices::groundVertices, Vertices::groundVertexCount);
-    m_stop = new Object("romfs:/gfx/stop.t3x", Vertices::stopVertices, Vertices::stopVertexCount);
     m_titleTown = new Object("romfs:/gfx/titleTown.t3x", Vertices::titleTownVertices, Vertices::titleTownVertexCount);
     m_lamp = new Object("romfs:/gfx/lamp.t3x", Vertices::lampVertices, Vertices::lampVertexCount);
     spriteSheet = new SpriteObj("romfs:/gfx/title.t3x");
+
+    // startTown
+    m_car = new Object("romfs:/gfx/car.t3x", Vertices::carVertices, Vertices::carVertexCount);
+    m_stop = new Object("romfs:/gfx/stop.t3x", Vertices::stopVertices, Vertices::stopVertexCount);
 
     m_lightManager = new LightManager();
 
@@ -73,8 +76,8 @@ Game::~Game(void)
 void Game::DeleteStage(void)
 {
     C2D_TextBufDelete(m_textBuf);
-    SAFE_DELETE(m_car);
-    SAFE_DELETE(m_sea);
+    // SAFE_DELETE(m_car);
+    // SAFE_DELETE(m_sea);
     SAFE_DELETE(m_ground);
     SAFE_DELETE(m_lightManager);
     SAFE_DELETE(m_stop);
@@ -121,7 +124,7 @@ void Game::handleInput(u32 kDown, u32 kHeld, u32 kUp)
                 selectedOption = MENU_CHAPTER;
             } else if (kDown & KEY_A) {
                 nowStage = START_TOWN;
-                DeleteStage();
+                // DeleteStage();
             }
             break;
         case MENU_CHAPTER:
