@@ -33,27 +33,31 @@ Game::Game(void)
     m_car = new Object("romfs:/gfx/car.t3x", Vertices::carVertices, Vertices::carVertexCount);
     m_stop = new Object("romfs:/gfx/stop.t3x", Vertices::stopVertices, Vertices::stopVertexCount);
 
+    // ライトを光らせるための処理
     m_lightManager = new LightManager();
 
+    // カメラを操作するための処理
     m_camera = new Camera(this, 0, 2.0f, 0);
     m_camera->setMoveCallback(moveCallback);
 
-
+    // テキストを表示するための処理
     m_textBuf = C2D_TextBufNew(4096);
 
+    // タイトル画面で今選択されているもののフラグ
     NewGameIsSelect = true;
     ChapterIsSelect = false;
     SettingIsSelect = false;
     StaffRoleIsSelect = false;
 
-
+    // タイトル画面で初期に選択されているもの   
     selectedOption = MENU_NEW_GAME;
 
-    //Defalut lights
+    // 初期に光っているライト
     for(u32 i = 2; i <= 8; i++)
     {
         m_lightManager->enable(i);
     }
+    // スプライトシートをインデックスから読み込む
     spriteSheet->setSprite(&companySprite, 0, 400 / 2, 240 / 2);
     spriteSheet->setSprite(&collaboraterSprite, 1, 400 / 2, 240 / 2);
     spriteSheet->setSprite(&logoSprite, 2, 400 / 2, 240 / 2);
@@ -62,6 +66,7 @@ Game::Game(void)
     spriteSheet->setSprite(&SettingSprite, 5, 400 / 2, 240 / 2);
     spriteSheet->setSprite(&StaffRoleSprite, 6, 400 / 2, 240 / 2);
 
+    // 霧の処理
     FogLut_Exp(&fog_Lut, 0.01f, 2.5f, 0.01f, 60.0f);
 	C3D_FogGasMode(GPU_FOG, GPU_PLAIN_DENSITY, false);
 	C3D_FogColor(0x7C542C);
