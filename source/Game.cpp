@@ -2,7 +2,7 @@
 #include "all_vertex.hpp"
 #include "vshader_shbin.h"
 #include "Utils.hpp"
-
+// pullできるか
 
 #define SAFE_DELETE(x) if(x) { delete x; x = nullptr; }
 
